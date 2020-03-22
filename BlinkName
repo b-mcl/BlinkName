@@ -1,0 +1,41 @@
+int led = D7;
+
+void setup() {
+    pinMode(led, OUTPUT);
+    digitalWrite(led, LOW);
+    
+    Particle.function("ledDot", ledDot);
+    Particle.function("ledDash", ledDash);
+}
+
+int ledDot(String command){//function for a morse code dot
+    digitalWrite(led, HIGH);
+    delay(500);
+    digitalWrite(led, LOW);
+    delay(500);
+    return 0;
+}
+
+int ledDash(String command){//function for a morse code dash
+    digitalWrite(led, HIGH);
+    delay(1250);//I would normally write if/else statments to control the commands, but thought it unneccesary for this task
+    digitalWrite(led, LOW);//as I am only blinking LED's
+    delay(500);
+    return 0;
+}
+
+void loop() {
+    ledDash("");
+    ledDot("");
+    ledDot("");
+    ledDot("");
+    delay(2000);//B
+    
+    ledDot("");
+    delay(2000);//E
+    
+    ledDash("");
+    ledDot("");
+    delay(2000);//N
+}
+    
